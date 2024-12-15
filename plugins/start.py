@@ -137,18 +137,19 @@ async def start_command(client: Client, message: Message):
                 quote=True
             )
         else:  # If START_PIC is empty, send only the text
-            await message.reply_text(
-                text=START_MSG.format(
-                    first=message.from_user.first_name,
-                    last=message.from_user.last_name,
-                    username=None if not message.from_user.username else '@' + message.from_user.username,
-                    mention=message.from_user.mention,
-                    id=message.from_user.id
-                ),
-                reply_markup=reply_markup,
-                disable_web_page_preview=True,
-                quote=True
-            )
+            await message.reply_photo(
+    photo=START_PIC,
+    caption=START_MSG.format(
+        first=message.from_user.first_name,
+        last=message.from_user.last_name,
+        username=None if not message.from_user.username else '@' + message.from_user.username,
+        mention=message.from_user.mention,
+        id=message.from_user.id
+    ),
+    reply_markup=reply_markup,
+    quote=True,
+    message_effect_id=5104841245755180586  # Add the effect ID here
+)
         return
 
     
@@ -194,17 +195,18 @@ async def not_joined(client: Client, message: Message):
         pass
 
     await message.reply(
-        text = FORCE_MSG.format(
-                first = message.from_user.first_name,
-                last = message.from_user.last_name,
-                username = None if not message.from_user.username else '@' + message.from_user.username,
-                mention = message.from_user.mention,
-                id = message.from_user.id
-            ),
-        reply_markup = InlineKeyboardMarkup(buttons),
-        quote = True,
-        disable_web_page_preview = True
-    )
+    text=FORCE_MSG.format(
+        first=message.from_user.first_name,
+        last=message.from_user.last_name,
+        username=None if not message.from_user.username else '@' + message.from_user.username,
+        mention=message.from_user.mention,
+        id=message.from_user.id
+    ),
+    reply_markup=InlineKeyboardMarkup(buttons),
+    quote=True,
+    disable_web_page_preview=True,
+    message_effect_id=5104841245755180586  # Add the effect ID here
+)
 
 @Bot.on_message(filters.command('users') & filters.private & filters.user(ADMINS))
 async def get_users(client: Bot, message: Message):
