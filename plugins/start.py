@@ -134,7 +134,7 @@ async def start_command(client: Client, message: Message):
                     id=message.from_user.id
                 ),
                 reply_markup=reply_markup,
-                quote=True
+message_effect_id=5104841245755180586 #🔥     
             )
         else:  # If START_PIC is empty, send only the text
             await message.reply_photo(
