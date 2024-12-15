@@ -37,7 +37,7 @@ JOIN_REQUEST_ENABLE = os.environ.get("JOIN_REQUEST_ENABLED", None)
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "50"))
 
 #start message
-START_PIC = os.environ.get("START_PIC","")
+START_PIC = os.environ.get("START_PIC", "https://envs.sh/Rv_.jpg")
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
 try:
     ADMINS=[]
