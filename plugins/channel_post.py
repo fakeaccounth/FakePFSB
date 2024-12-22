@@ -33,7 +33,8 @@ async def channel_post(client: Client, message: Message):
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
 
     # Shorten the bot link if enabled
-    short_bot_link = bot_link
+    short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
+
     if USE_SHORTLINK:
         short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
 
@@ -43,7 +44,7 @@ async def channel_post(client: Client, message: Message):
         buttons.append([InlineKeyboardButton("🔗 Website Link", url=website_link)])
     buttons.append([InlineKeyboardButton("🔁 Bot Link (Original)", url=f'https://telegram.me/share/url?url={bot_link}')])
     if USE_SHORTLINK:
-        buttons.append([InlineKeyboardButton("⚡️ Shortened Bot Link", url=f'https://telegram.me/share/url?url={short_bot_link}')])
+        buttons.append([InlineKeyboardButton("⚡️ Shortened Bot Link", url={short_bot_link})])
 
     reply_markup = InlineKeyboardMarkup(buttons)
 
@@ -86,7 +87,7 @@ async def new_post(client: Client, message: Message):
         buttons.append([InlineKeyboardButton("🔗 Website Link", url=website_link)])
     buttons.append([InlineKeyboardButton("🔁 Bot Link (Original)", url=f'https://telegram.me/share/url?url={bot_link}')])
     if USE_SHORTLINK:
-        buttons.append([InlineKeyboardButton("⚡️ Shortened Bot Link", url=f'https://telegram.me/share/url?url={short_bot_link}')])
+        buttons.append([InlineKeyboardButton("⚡️ Shortened Bot Link", url={short_bot_link})])
 
     reply_markup = InlineKeyboardMarkup(buttons)
 
