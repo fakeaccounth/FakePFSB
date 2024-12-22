@@ -11,6 +11,6 @@ motor  # Async driver for MongoDB
 
 # --- For-Web-Response ------- #
 aiohttp 
-
+python-dotenv
 # --- Advance-Format --- #
 pyrofork
