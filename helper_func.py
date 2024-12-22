@@ -11,7 +11,7 @@ from shortzy import Shortzy
 import logging 
 from pyrogram import filters, Client
 from pyrogram.enums import ChatMemberStatus
-from config import FORCE_SUB_CHANNEL, ADMINS, AUTO_DELETE_TIME, AUTO_DEL_SUCCESS_MSG, USE_SHORTLINK, SHORTLINK_API_URL, SHORTLINK_API_KEY
+from config import Config
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from pyrogram.errors import FloodWait
 
