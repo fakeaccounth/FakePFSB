@@ -119,31 +119,36 @@ async def delete_file(messages, client, process):
     await process.edit_text(AUTO_DEL_SUCCESS_MSG)
 
 
-async def generate_shortlink(api_url: str, api_key: str, long_url: str) -> str:
+async def generate_shortlink(api_url, api_key, original_link):
     """
-    Generate a shortened link using a URL shortening service.
-
-    Args:
-        api_url (str): The API endpoint for the shortening service.
-        api_key (str): The API key for authentication.
-        long_url (str): The original long URL to be shortened.
-
-    Returns:
-        str: The shortened URL if successful, otherwise the original URL.
+    Shortens the provided bot link using the specified URL shortener service.
     """
-    if not USE_SHORTLINK:
-        return long_url  # Return the original URL if shortlinking is disabled
-
     try:
+        # Ensure API URL ends with a forward slash
+        if not api_url.endswith('/'):
+            api_url += '/'
+        
+        # Prepare the payload for the shortening request
+        payload = {
+            "api": api_key,
+            "url": original_link
+        }
+        
+        # Make a POST request to the shortener service
         async with aiohttp.ClientSession() as session:
-            payload = {"url": long_url, "key": api_key}
-            async with session.post(api_url, json=payload) as response:
+            async with session.post(api_url, data=payload) as response:
                 if response.status == 200:
                     data = await response.json()
-                    return data.get("shortened_url", long_url)  # Return shortened URL or fallback
+                    
+                    # Check for the shortened link in the response
+                    if "shortenedUrl" in data:
+                        return data["shortenedUrl"]
+                    else:
+                        raise ValueError(f"Shortening failed: {data}")
+                else:
+                    raise ValueError(f"HTTP Error: {response.status}")
     except Exception as e:
-        print(f"Shortlink generation failed: {e}")
-    
-    return long_url  # Return the original URL on failure
+        print(f"Error in generate_shortlink: {e}")
+        return original_link  # Fallback to the original link
 
 subscribed = filters.create(is_subscribed)
