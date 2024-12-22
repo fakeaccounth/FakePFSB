@@ -6,6 +6,7 @@ from pyrogram.errors import FloodWait
 from bot import Bot
 from config import *
 from helper_func import encode, generate_shortlink
+from shortzy import Shortzy
 
 @Bot.on_message(filters.private & filters.user(ADMINS) & ~filters.command(['start', 'users', 'broadcast', 'batch', 'genlink', 'stats']))
 async def channel_post(client: Client, message: Message):
@@ -30,10 +31,11 @@ async def channel_post(client: Client, message: Message):
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
 
     # Shorten the bot link if enabled
-    short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
+    shortzy = Shortzy(api_key=SHORTLINK_API_KEY, base_site=SHORTLINK_API_URL)
+    short_bot_link = await shortzy.convert(bot_link)
 
     if USE_SHORTLINK:
-        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
+        short_bot_link = await shortzy.convert(bot_link)
 
     # Create inline keyboard
     buttons = []
@@ -74,9 +76,11 @@ async def new_post(client: Client, message: Message):
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
 
     # Shorten the bot link if enabled
-    short_bot_link = bot_link
+    shortzy = Shortzy(api_key=SHORTLINK_API_KEY, base_site=SHORTLINK_API_URL)
+    short_bot_link = await shortzy.convert(bot_link)
+
     if USE_SHORTLINK:
-        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
+        short_bot_link = await shortzy.convert(bot_link)
 
     # Create inline keyboard
     buttons = []
