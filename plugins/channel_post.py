@@ -4,8 +4,11 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait
 
 from bot import Bot
-from config import ADMINS, CHANNEL_ID, DISABLE_CHANNEL_BUTTON, WEBSITE_URL, WEBSITE_URL_MODE, USE_SHORTLINK, SHORTLINK_API_URL, SHORTLINK_API_KEY
-from helper_func import encode
+from config import (
+    ADMINS, CHANNEL_ID, DISABLE_CHANNEL_BUTTON, WEBSITE_URL, WEBSITE_URL_MODE,
+    USE_SHORTLINK, SHORTLINK_API_URL, SHORTLINK_API_KEY
+)
+from helper_func import encode, generate_shortlink
 
 @Bot.on_message(filters.private & filters.user(ADMINS) & ~filters.command(['start', 'users', 'broadcast', 'batch', 'genlink', 'stats']))
 async def channel_post(client: Client, message: Message):
@@ -29,19 +32,28 @@ async def channel_post(client: Client, message: Message):
     website_link = f"{WEBSITE_URL}?rohit_18={base64_string}" if WEBSITE_URL_MODE else None
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
 
-    # Create inline keyboard with both links
-    buttons = [
-        [InlineKeyboardButton("🔗 Website Link", url=website_link)] if WEBSITE_URL_MODE else [],
-        [InlineKeyboardButton("🔁 Share Bot Link", url=f'https://telegram.me/share/url?url={bot_link}')],
-    ]
+    # Shorten the bot link if enabled
+    short_bot_link = bot_link
+    if USE_SHORTLINK:
+        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link) or bot_link
+
+    # Create inline keyboard
+    buttons = []
+    if WEBSITE_URL_MODE:
+        buttons.append([InlineKeyboardButton("🔗 Website Link", url=website_link)])
+    buttons.append([InlineKeyboardButton("🔁 Bot Link (Original)", url=f'https://telegram.me/share/url?url={bot_link}')])
+    if USE_SHORTLINK:
+        buttons.append([InlineKeyboardButton("⚡️ Shortened Bot Link", url=f'https://telegram.me/share/url?url={short_bot_link}')])
 
     reply_markup = InlineKeyboardMarkup(buttons)
 
-    # Edit reply with both links
+    # Edit reply with all links
     message_text = "<b>Here are your links:</b>\n\n"
     if WEBSITE_URL_MODE:
         message_text += f"<b>Website:</b> {website_link}\n"
-    message_text += f"<b>Bot:</b> {bot_link}"
+    message_text += f"<b>Bot (Original):</b> {bot_link}\n"
+    if USE_SHORTLINK:
+        message_text += f"<b>Bot (Shortened):</b> {short_bot_link}"
 
     await reply_text.edit(message_text, reply_markup=reply_markup, disable_web_page_preview=True)
 
@@ -63,11 +75,18 @@ async def new_post(client: Client, message: Message):
     website_link = f"{WEBSITE_URL}?rohit_18={base64_string}" if WEBSITE_URL_MODE else None
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
 
-    # Create inline keyboard with both links
-    buttons = [
-        [InlineKeyboardButton("🔗 Website Link", url=website_link)] if WEBSITE_URL_MODE else [],
-        [InlineKeyboardButton("🔁 Share Bot Link", url=f'https://telegram.me/share/url?url={bot_link}')],
-    ]
+    # Shorten the bot link if enabled
+    short_bot_link = bot_link
+    if USE_SHORTLINK:
+        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link) or bot_link
+
+    # Create inline keyboard
+    buttons = []
+    if WEBSITE_URL_MODE:
+        buttons.append([InlineKeyboardButton("🔗 Website Link", url=website_link)])
+    buttons.append([InlineKeyboardButton("🔁 Bot Link (Original)", url=f'https://telegram.me/share/url?url={bot_link}')])
+    if USE_SHORTLINK:
+        buttons.append([InlineKeyboardButton("⚡️ Shortened Bot Link", url=f'https://telegram.me/share/url?url={short_bot_link}')])
 
     reply_markup = InlineKeyboardMarkup(buttons)
 
