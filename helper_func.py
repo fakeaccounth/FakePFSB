@@ -7,6 +7,7 @@ import aiohttp
 import random
 import string
 import requests
+from shortzy import Shortzy
 import logging 
 from pyrogram import filters, Client
 from pyrogram.enums import ChatMemberStatus
@@ -123,26 +124,15 @@ async def delete_file(messages, client, process):
 
 
 
-def generate_random_alphanumeric():
-    """Generate a random 8-letter alphanumeric string."""
-    characters = string.ascii_letters + string.digits
-    random_chars = ''.join(random.choice(characters) for _ in range(8))
-    return random_chars
 
-def get_short(url):
-    """Shorten the given URL using a custom shortener service."""
+
+async def generate_shortlink(url, api_key, link):
+    shortzy = Shortzy(api_key=api_key)
     try:
-        # Making the request to the shortening service
-        rget = requests.get(f"https://{Config.SHORTLINK_API_URL}/api?api={Config.SHORTLINK_API_KEY}&url={url}&alias={generate_random_alphanumeric()}")
-        rjson = rget.json()
-        
-        # Check if the response is successful
-        if rjson["status"] == "success" or rget.status_code == 200:
-            return rjson["shortenedUrl"]
-        else:
-            return url  # Return original URL if there's an error
+        shortened_link = await shortzy.convert(link)
+        return shortened_link
     except Exception as e:
-        print(f"Error in get_short: {e}")
-        return url  # Return the original URL in case of any error
+        print(f"Error shortening link: {e}")
+        return link  # Return the original link if something goes wrong
 
 subscribed = filters.create(is_subscribed)
