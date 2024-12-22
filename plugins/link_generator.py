@@ -2,8 +2,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from bot import Bot
 from config import ADMINS, WEBSITE_URL, WEBSITE_URL_MODE, USE_SHORTLINK, SHORTLINK_API_URL, SHORTLINK_API_KEY
-from helper_func import encode, get_message_id, generate_shortlink
-
+from helper_func import encode, get_message_id
+from shortzy import Shortzy
 
 @Bot.on_message(filters.private & filters.user(ADMINS) & filters.command('batch'))
 async def batch(client: Client, message: Message):
@@ -54,11 +54,12 @@ async def batch(client: Client, message: Message):
     # Generate links
     website_link = f"{WEBSITE_URL}?rohit_18={base64_string}" if WEBSITE_URL_MODE else None
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
-    short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
 
-    # Generate shortened bot link if enabled
+    # Shorten the bot link if enabled using Shortzy API
+    shortzy = Shortzy(api_key=SHORTLINK_API_KEY, base_site=SHORTLINK_API_URL)
+    short_bot_link = bot_link
     if USE_SHORTLINK:
-        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
+        short_bot_link = await shortzy.convert(bot_link)
 
     # Inline keyboard with all links
     reply_markup = InlineKeyboardMarkup([
@@ -105,11 +106,12 @@ async def link_generator(client: Client, message: Message):
     # Generate links
     website_link = f"{WEBSITE_URL}?rohit_18={base64_string}" if WEBSITE_URL_MODE else None
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
-    short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
 
-    # Generate shortened bot link if enabled
+    # Shorten the bot link if enabled using Shortzy API
+    shortzy = Shortzy(api_key=SHORTLINK_API_KEY, base_site=SHORTLINK_API_URL)
+    short_bot_link = bot_link
     if USE_SHORTLINK:
-        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
+        short_bot_link = await shortzy.convert(bot_link)
 
     # Inline keyboard with all links
     reply_markup = InlineKeyboardMarkup([
