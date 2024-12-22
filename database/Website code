@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>View Your Message</h1>
+    <p id="message-content">Fetching the message...</p>
+    <a id="open-link" href="#" target="_blank">Open in Telegram Bot</a>
+    <script>
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const messageId = urlParams.get('rohit_18');
+        
+        if (messageId) {
+            // Construct the bot link dynamically
+            const botUsername = "Token_f_bot"; // Replace with your bot's username
+            const telegramLink = `https://t.me/${botUsername}?start=${messageId}`;
+            document.getElementById("open-link").href = telegramLink;
+
+            // Display the message content dynamically
+            document.getElementById("message-content").textContent = `Message ID: ${messageId}`;
+        } else {
+            document.body.innerHTML = "<h2>Invalid or Missing Message ID</h2>";
+        }
+    </script>
+</body>
+</html>
