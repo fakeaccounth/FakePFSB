@@ -54,11 +54,11 @@ async def batch(client: Client, message: Message):
     # Generate links
     website_link = f"{WEBSITE_URL}?rohit_18={base64_string}" if WEBSITE_URL_MODE else None
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
-    short_bot_link = bot_link
+    short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
 
     # Generate shortened bot link if enabled
     if USE_SHORTLINK:
-        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link) or bot_link
+        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
 
     # Inline keyboard with all links
     reply_markup = InlineKeyboardMarkup([
@@ -105,11 +105,11 @@ async def link_generator(client: Client, message: Message):
     # Generate links
     website_link = f"{WEBSITE_URL}?rohit_18={base64_string}" if WEBSITE_URL_MODE else None
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
-    short_bot_link = bot_link
+    short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
 
     # Generate shortened bot link if enabled
     if USE_SHORTLINK:
-        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link) or bot_link
+        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
 
     # Inline keyboard with all links
     reply_markup = InlineKeyboardMarkup([
