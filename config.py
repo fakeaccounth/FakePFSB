@@ -7,7 +7,6 @@ from logging.handlers import RotatingFileHandler
 
 
 load_dotenv()
-class Config(object):
 
 #Bot token @Botfather
 TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7464831986:AAHtbcXbi8HgdTAVFu5L5FB-n5kXSZeggM4")
