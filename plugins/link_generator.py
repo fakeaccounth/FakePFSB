@@ -1,8 +1,8 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from bot import Bot
-from config import ADMINS, WEBSITE_URL, WEBSITE_URL_MODE
-from helper_func import encode, get_message_id
+from config import ADMINS, WEBSITE_URL, WEBSITE_URL_MODE, USE_SHORTLINK, SHORTLINK_API_URL, SHORTLINK_API_KEY
+from helper_func import encode, get_message_id, generate_shortlink
 
 
 @Bot.on_message(filters.private & filters.user(ADMINS) & filters.command('batch'))
@@ -52,18 +52,24 @@ async def batch(client: Client, message: Message):
     base64_string = await encode(string)
 
     # Generate links
-    if WEBSITE_URL_MODE:
-        website_link = f"{WEBSITE_URL}?rohit_18={base64_string}"
+    website_link = f"{WEBSITE_URL}?rohit_18={base64_string}" if WEBSITE_URL_MODE else None
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
+    short_bot_link = bot_link
 
-    # Inline keyboard with both links
+    # Generate shortened bot link if enabled
+    if USE_SHORTLINK:
+        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link) or bot_link
+
+    # Inline keyboard with all links
     reply_markup = InlineKeyboardMarkup([
         [InlineKeyboardButton("🌐 Open on Website", url=website_link)] if WEBSITE_URL_MODE else [],
-        [InlineKeyboardButton("🔁 Share Telegram Link", url=f'https://telegram.me/share/url?url={bot_link}')]
+        [InlineKeyboardButton("🔗 Bot Link (Shortened)", url=short_bot_link)],
+        [InlineKeyboardButton("🔁 Share Telegram Link", url=f'https://telegram.me/share/url?url={bot_link}')],
     ])
 
     await second_message.reply_text(
         f"<b>Here is your link</b>\n\n"
+        f"Shortened Bot Link: {short_bot_link}\n"
         f"Bot Link: {bot_link}\n"
         f"{f'Website Link: {website_link}' if WEBSITE_URL_MODE else ''}",
         quote=True,
@@ -97,18 +103,24 @@ async def link_generator(client: Client, message: Message):
     base64_string = await encode(f"get-{msg_id * abs(client.db_channel.id)}")
 
     # Generate links
-    if WEBSITE_URL_MODE:
-        website_link = f"{WEBSITE_URL}?rohit_18={base64_string}"
+    website_link = f"{WEBSITE_URL}?rohit_18={base64_string}" if WEBSITE_URL_MODE else None
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
+    short_bot_link = bot_link
 
-    # Inline keyboard with both links
+    # Generate shortened bot link if enabled
+    if USE_SHORTLINK:
+        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link) or bot_link
+
+    # Inline keyboard with all links
     reply_markup = InlineKeyboardMarkup([
         [InlineKeyboardButton("🌐 Open on Website", url=website_link)] if WEBSITE_URL_MODE else [],
-        [InlineKeyboardButton("🔁 Share Telegram Link", url=f'https://telegram.me/share/url?url={bot_link}')]
+        [InlineKeyboardButton("🔗 Bot Link (Shortened)", url=short_bot_link)],
+        [InlineKeyboardButton("🔁 Share Telegram Link", url=f'https://telegram.me/share/url?url={bot_link}')],
     ])
 
     await channel_message.reply_text(
         f"<b>Here is your link</b>\n\n"
+        f"Shortened Bot Link: {short_bot_link}\n"
         f"Bot Link: {bot_link}\n"
         f"{f'Website Link: {website_link}' if WEBSITE_URL_MODE else ''}",
         quote=True,
