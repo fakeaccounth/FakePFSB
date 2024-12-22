@@ -13,3 +13,10 @@ aiohttp
 python-dotenv
 # --- Advance-Format --- #
 pyrofork
+pytz
+requests
+bs4
+shortzy
+aiohttp
+aiofiles
+asyncio
