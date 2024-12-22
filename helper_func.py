@@ -11,7 +11,7 @@ from shortzy import Shortzy
 import logging 
 from pyrogram import filters, Client
 from pyrogram.enums import ChatMemberStatus
-from config import Config
+from config import *
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from pyrogram.errors import FloodWait
 
