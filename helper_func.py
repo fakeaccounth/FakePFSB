@@ -118,12 +118,18 @@ async def delete_file(messages, client, process):
 
     await process.edit_text(AUTO_DEL_SUCCESS_MSG)
 
-
 async def generate_shortlink(api_url, api_key, original_link):
     """
     Shortens the provided bot link using the specified URL shortener service.
     """
     try:
+        # Ensure original_link is a string
+        if isinstance(original_link, set):
+            original_link = ''.join(original_link)  # Convert set to string
+
+        if not isinstance(original_link, str):
+            raise ValueError("The original link must be a string.")
+
         # Ensure API URL ends with a forward slash
         if not api_url.endswith('/'):
             api_url += '/'
