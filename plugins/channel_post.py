@@ -2,11 +2,11 @@ import asyncio
 from pyrogram import filters, Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait
+from shortzy import Shortzy
 
 from bot import Bot
 from config import *
-from helper_func import encode, generate_shortlink
-from shortzy import Shortzy
+from helper_func import encode
 
 @Bot.on_message(filters.private & filters.user(ADMINS) & ~filters.command(['start', 'users', 'broadcast', 'batch', 'genlink', 'stats']))
 async def channel_post(client: Client, message: Message):
@@ -32,8 +32,7 @@ async def channel_post(client: Client, message: Message):
 
     # Shorten the bot link if enabled
     shortzy = Shortzy(api_key=SHORTLINK_API_KEY, base_site=SHORTLINK_API_URL)
-    short_bot_link = await shortzy.convert(bot_link)
-
+    short_bot_link = bot_link
     if USE_SHORTLINK:
         short_bot_link = await shortzy.convert(bot_link)
 
@@ -43,7 +42,7 @@ async def channel_post(client: Client, message: Message):
         buttons.append([InlineKeyboardButton("🔗 Website Link", url=website_link)])
     buttons.append([InlineKeyboardButton("🔁 Bot Link (Original)", url=f'https://telegram.me/share/url?url={bot_link}')])
     if USE_SHORTLINK:
-        buttons.append([InlineKeyboardButton("⚡️ Shortened Bot Link", url={short_bot_link})])
+        buttons.append([InlineKeyboardButton("⚡️ Shortened Bot Link", url=short_bot_link)])
 
     reply_markup = InlineKeyboardMarkup(buttons)
 
@@ -77,8 +76,7 @@ async def new_post(client: Client, message: Message):
 
     # Shorten the bot link if enabled
     shortzy = Shortzy(api_key=SHORTLINK_API_KEY, base_site=SHORTLINK_API_URL)
-    short_bot_link = await shortzy.convert(bot_link)
-
+    short_bot_link = bot_link
     if USE_SHORTLINK:
         short_bot_link = await shortzy.convert(bot_link)
 
@@ -88,7 +86,7 @@ async def new_post(client: Client, message: Message):
         buttons.append([InlineKeyboardButton("🔗 Website Link", url=website_link)])
     buttons.append([InlineKeyboardButton("🔁 Bot Link (Original)", url=f'https://telegram.me/share/url?url={bot_link}')])
     if USE_SHORTLINK:
-        buttons.append([InlineKeyboardButton("⚡️ Shortened Bot Link", url={short_bot_link})])
+        buttons.append([InlineKeyboardButton("⚡️ Shortened Bot Link", url=short_bot_link)])
 
     reply_markup = InlineKeyboardMarkup(buttons)
 
