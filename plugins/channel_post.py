@@ -40,7 +40,7 @@ async def channel_post(client: Client, message: Message):
     buttons = []
     if WEBSITE_URL_MODE:
         buttons.append([InlineKeyboardButton("🔗 Website Link", url=website_link)])
-    buttons.append([InlineKeyboardButton("🔁 Bot Link (Original)", url=f'https://telegram.me/share/url?url={bot_link}')])
+    buttons.append([InlineKeyboardButton("🔁 Bot Link (Original)", url=bot_link)])
     if USE_SHORTLINK:
         buttons.append([InlineKeyboardButton("⚡️ Shortened Bot Link", url=short_bot_link)])
 
@@ -84,7 +84,7 @@ async def new_post(client: Client, message: Message):
     buttons = []
     if WEBSITE_URL_MODE:
         buttons.append([InlineKeyboardButton("🔗 Website Link", url=website_link)])
-    buttons.append([InlineKeyboardButton("🔁 Bot Link (Original)", url=f'https://telegram.me/share/url?url={bot_link}')])
+    buttons.append([InlineKeyboardButton("🔁 Bot Link (Original)", url=bot_link)])
     if USE_SHORTLINK:
         buttons.append([InlineKeyboardButton("⚡️ Shortened Bot Link", url=short_bot_link)])
 
