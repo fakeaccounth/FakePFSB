@@ -65,7 +65,7 @@ async def batch(client: Client, message: Message):
     reply_markup = InlineKeyboardMarkup([
         [InlineKeyboardButton("🌐 Open on Website", url=website_link)] if WEBSITE_URL_MODE else [],
         [InlineKeyboardButton("🔗 Bot Link (Shortened)", url=short_bot_link)],
-        [InlineKeyboardButton("🔁 Share Telegram Link", url=f'https://telegram.me/share/url?url={bot_link}')],
+        [InlineKeyboardButton("🔁 Telegram Bot Link", url=bot_link)],
     ])
 
     await second_message.reply_text(
@@ -117,7 +117,7 @@ async def link_generator(client: Client, message: Message):
     reply_markup = InlineKeyboardMarkup([
         [InlineKeyboardButton("🌐 Open on Website", url=website_link)] if WEBSITE_URL_MODE else [],
         [InlineKeyboardButton("🔗 Bot Link (Shortened)", url=short_bot_link)],
-        [InlineKeyboardButton("🔁 Share Telegram Link", url=f'https://telegram.me/share/url?url={bot_link}')],
+        [InlineKeyboardButton("🔁 Telegram Bot Link", url=bot_link)],
     ])
 
     await channel_message.reply_text(
