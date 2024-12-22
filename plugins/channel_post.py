@@ -35,7 +35,7 @@ async def channel_post(client: Client, message: Message):
     # Shorten the bot link if enabled
     short_bot_link = bot_link
     if USE_SHORTLINK:
-        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link) or bot_link
+        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
 
     # Create inline keyboard
     buttons = []
@@ -78,7 +78,7 @@ async def new_post(client: Client, message: Message):
     # Shorten the bot link if enabled
     short_bot_link = bot_link
     if USE_SHORTLINK:
-        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link) or bot_link
+        short_bot_link = await generate_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY, bot_link)
 
     # Create inline keyboard
     buttons = []
