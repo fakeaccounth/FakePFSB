@@ -3,10 +3,11 @@
 import base64
 import re
 import asyncio
+import aiohttp
 import logging 
-from pyrogram import filters
+from pyrogram import filters, Client
 from pyrogram.enums import ChatMemberStatus
-from config import FORCE_SUB_CHANNEL, ADMINS, AUTO_DELETE_TIME, AUTO_DEL_SUCCESS_MSG
+from config import FORCE_SUB_CHANNEL, ADMINS, AUTO_DELETE_TIME, AUTO_DEL_SUCCESS_MSG, USE_SHORTLINK, SHORTLINK_API_URL, SHORTLINK_API_KEY
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from pyrogram.errors import FloodWait
 
@@ -117,5 +118,32 @@ async def delete_file(messages, client, process):
 
     await process.edit_text(AUTO_DEL_SUCCESS_MSG)
 
+
+async def generate_shortlink(api_url: str, api_key: str, long_url: str) -> str:
+    """
+    Generate a shortened link using a URL shortening service.
+
+    Args:
+        api_url (str): The API endpoint for the shortening service.
+        api_key (str): The API key for authentication.
+        long_url (str): The original long URL to be shortened.
+
+    Returns:
+        str: The shortened URL if successful, otherwise the original URL.
+    """
+    if not USE_SHORTLINK:
+        return long_url  # Return the original URL if shortlinking is disabled
+
+    try:
+        async with aiohttp.ClientSession() as session:
+            payload = {"url": long_url, "key": api_key}
+            async with session.post(api_url, json=payload) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return data.get("shortened_url", long_url)  # Return shortened URL or fallback
+    except Exception as e:
+        print(f"Shortlink generation failed: {e}")
+    
+    return long_url  # Return the original URL on failure
 
 subscribed = filters.create(is_subscribed)
