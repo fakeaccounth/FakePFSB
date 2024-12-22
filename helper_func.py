@@ -32,17 +32,28 @@ async def is_subscribed(filter, client, update):
         return True
 
 async def encode(string):
+    # Ensure the input is a string
+    if not isinstance(string, str):
+        print(f"Error: Expected string but got {type(string)}: {string}")
+        raise ValueError("Input should be a string")
+    
     string_bytes = string.encode("ascii")
     base64_bytes = base64.urlsafe_b64encode(string_bytes)
     base64_string = (base64_bytes.decode("ascii")).strip("=")
     return base64_string
 
 async def decode(base64_string):
-    base64_string = base64_string.strip("=") # links generated before this commit will be having = sign, hence striping them to handle padding errors.
+    # Ensure the input is a string
+    if not isinstance(base64_string, str):
+        print(f"Error: Expected string but got {type(base64_string)}: {base64_string}")
+        raise ValueError("Input should be a string")
+    
+    base64_string = base64_string.strip("=")  # links generated before this commit will be having = sign, hence stripping them to handle padding errors.
     base64_bytes = (base64_string + "=" * (-len(base64_string) % 4)).encode("ascii")
     string_bytes = base64.urlsafe_b64decode(base64_bytes) 
     string = string_bytes.decode("ascii")
     return string
+
 
 async def get_messages(client, message_ids):
     messages = []
