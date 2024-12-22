@@ -4,6 +4,9 @@ import base64
 import re
 import asyncio
 import aiohttp
+import random
+import string
+import requests
 import logging 
 from pyrogram import filters, Client
 from pyrogram.enums import ChatMemberStatus
@@ -118,43 +121,28 @@ async def delete_file(messages, client, process):
 
     await process.edit_text(AUTO_DEL_SUCCESS_MSG)
 
-async def generate_shortlink(api_url, api_key, original_link):
-    """
-    Shortens the provided bot link using the specified URL shortener service.
-    """
+
+
+def generate_random_alphanumeric():
+    """Generate a random 8-letter alphanumeric string."""
+    characters = string.ascii_letters + string.digits
+    random_chars = ''.join(random.choice(characters) for _ in range(8))
+    return random_chars
+
+def get_short(url):
+    """Shorten the given URL using a custom shortener service."""
     try:
-        # Ensure original_link is a string
-        if isinstance(original_link, set):
-            original_link = ''.join(original_link)  # Convert set to string
-
-        if not isinstance(original_link, str):
-            raise ValueError("The original link must be a string.")
-
-        # Ensure API URL ends with a forward slash
-        if not api_url.endswith('/'):
-            api_url += '/'
+        # Making the request to the shortening service
+        rget = requests.get(f"https://{Config.SHORTLINK_API_URL}/api?api={Config.SHORTLINK_API_KEY}&url={url}&alias={generate_random_alphanumeric()}")
+        rjson = rget.json()
         
-        # Prepare the payload for the shortening request
-        payload = {
-            "api": api_key,
-            "url": original_link
-        }
-        
-        # Make a POST request to the shortener service
-        async with aiohttp.ClientSession() as session:
-            async with session.post(api_url, data=payload) as response:
-                if response.status == 200:
-                    data = await response.json()
-                    
-                    # Check for the shortened link in the response
-                    if "shortenedUrl" in data:
-                        return data["shortenedUrl"]
-                    else:
-                        raise ValueError(f"Shortening failed: {data}")
-                else:
-                    raise ValueError(f"HTTP Error: {response.status}")
+        # Check if the response is successful
+        if rjson["status"] == "success" or rget.status_code == 200:
+            return rjson["shortenedUrl"]
+        else:
+            return url  # Return original URL if there's an error
     except Exception as e:
-        print(f"Error in generate_shortlink: {e}")
-        return original_link  # Fallback to the original link
+        print(f"Error in get_short: {e}")
+        return url  # Return the original URL in case of any error
 
 subscribed = filters.create(is_subscribed)
