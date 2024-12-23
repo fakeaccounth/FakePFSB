@@ -64,7 +64,7 @@ AUTO_DEL_SUCCESS_MSG = os.environ.get("AUTO_DEL_SUCCESS_MSG", "Your file has bee
 WEBSITE_URL_MODE = os.environ.get('WEBSITE_URL_MODE', True) # Set True or False
 
 # If Website Url Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-WEBSITE_URL = os.environ.get("WEBSITE_URL", "https://rohittgcoder.blogspot.com/2024/12/rohit18.html") 
+WEBSITE_URL = os.environ.get("WEBSITE_URL", "https://telegramfilestorebot.blogspot.com/2024/12/codexbot.html") 
 
 # Turn this feature on or off using True or False put value inside  ""
 # TRUE for yes FALSE if no 
