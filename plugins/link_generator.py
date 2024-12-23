@@ -52,7 +52,7 @@ async def batch(client: Client, message: Message):
     base64_string = await encode(string)
 
     # Generate links
-    website_link = f"{WEBSITE_URL}?rohit_18={base64_string}" if WEBSITE_URL_MODE else None
+    website_link = f"{WEBSITE_URL}?codexbot={base64_string}" if WEBSITE_URL_MODE else None
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
 
     # Shorten the bot link if enabled using Shortzy API
@@ -104,7 +104,7 @@ async def link_generator(client: Client, message: Message):
     base64_string = await encode(f"get-{msg_id * abs(client.db_channel.id)}")
 
     # Generate links
-    website_link = f"{WEBSITE_URL}?rohit_18={base64_string}" if WEBSITE_URL_MODE else None
+    website_link = f"{WEBSITE_URL}?codexbot={base64_string}" if WEBSITE_URL_MODE else None
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
 
     # Shorten the bot link if enabled using Shortzy API
