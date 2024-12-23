@@ -2,7 +2,7 @@
 # --- For-Bot-Working --------- #
 TgCrypto 
 pyromod==1.5
-pyrogram==2.1.33
+pyrogram
 # --- For-Database ------------ #
 pymongo 
 dnspython 
@@ -12,7 +12,7 @@ motor  # Async driver for MongoDB
 aiohttp 
 python-dotenv
 # --- Advance-Format --- #
-pyrofork==2.3.52
+pyrofork
 pytz
 requests
 bs4
