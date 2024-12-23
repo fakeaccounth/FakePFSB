@@ -1,7 +1,7 @@
 import asyncio
 from pyrogram import filters, Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram.errors import FloodWait
+from pyrogram.errors import FloodWait, MessageIdInvalid
 from shortzy import Shortzy
 
 from bot import Bot
