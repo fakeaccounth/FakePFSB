@@ -9,30 +9,30 @@ from logging.handlers import RotatingFileHandler
 load_dotenv()
 
 #Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7464831986:AAGugCNhTzAU9lJYc7sMcOwMHmsZ21nbMBQ")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7648240074:AAGMLQVF4FP_IpWszcBhnqkubzUv2pX61M8")
 
 #Your API ID from my.telegram.org
-APP_ID = int(os.environ.get("APP_ID", "22469064"))
+APP_ID = int(os.environ.get("APP_ID", "29534418"))
 
 #Your API Hash from my.telegram.org
-API_HASH = os.environ.get("API_HASH", "c05481978a217fdb11fa6774b15cba32")
+API_HASH = os.environ.get("API_HASH", "5f15dd792990ade40a43ae17413b422f")
 
 #Your db channel Id
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002008354608"))
+CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002354086648"))
 
 #OWNER ID
-OWNER_ID = int(os.environ.get("OWNER_ID", "7328629001"))
+OWNER_ID = int(os.environ.get("OWNER_ID", "5691486059"))
 
 #Port
-PORT = os.environ.get("PORT", "8037")
+PORT = os.environ.get("PORT", "8000")
 
 #Database 
-DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://koyeb77user:rohit870@cluster0.wgdkp.mongodb.net/?retryWrites=true&w=majority")
+DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://fffworld57:Or97XLuv6P6GvtFZ@cluster0.u34tcer.mongodb.net/?retryWrites=true&w=majority")
 DB_NAME = os.environ.get("DATABASE_NAME", "filesx")
 
 
 #force sub channel id, if you want enable force sub
-FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1002215102799"))
+FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1002433749621"))
 JOIN_REQUEST_ENABLE = os.environ.get("JOIN_REQUEST_ENABLED", None)
 
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "50"))
@@ -42,7 +42,7 @@ START_PIC = os.environ.get("START_PIC", "https://telegra.ph/file/ec17880d61180d3
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
 try:
     ADMINS=[]
-    for x in (os.environ.get("ADMINS", "").split()):
+    for x in (os.environ.get("ADMINS", "7328629001").split()):
         ADMINS.append(int(x))
 except ValueError:
         raise Exception("Your Admins list does not contain valid integers.")
