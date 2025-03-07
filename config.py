@@ -61,8 +61,9 @@ PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" e
 
 # Auto delete time in seconds.
 AUTO_DELETE_TIME = int(os.getenv("AUTO_DELETE_TIME", "60"))
-AUTO_DELETE_MSG = os.environ.get("AUTO_DELETE_MSG", "File will be automatically deleted in 35 Hours. Please Watch Before It Will Delete.")
-AUTO_DEL_SUCCESS_MSG = os.environ.get("AUTO_DEL_SUCCESS_MSG", "Your 📂 Deleted Succusfully ✅")
+AUTO_DELETE_MSG = os.environ.get("AUTO_DELETE_MSG", "<b>File will be automatically deleted in 35 Hours. Please Watch It, Before Deleted.</b>")
+AUTO_DEL_SUCCESS_MSG = os.environ.get("AUTO_DEL_SUCCESS_MSG", "<b>Your 📂 Deleted Successfully ✅</b>")
+
 
 WEBSITE_URL_MODE = os.environ.get('WEBSITE_URL_MODE', True) # Set True or False
 
@@ -77,7 +78,7 @@ SHORTLINK_API_URL = os.environ.get("SHORTLINK_API_URL", "modijiurl.com")
 SHORTLINK_API_KEY = os.environ.get("SHORTLINK_API_KEY", "")
 
 #Set true if you want Disable your Channel Posts Share button
-DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", True) == 'True'
+DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", "True") == 'True'
 
 BOT_STATS_TEXT = "<b>BOT UPTIME</b>\n{uptime}"
 USER_REPLY_TEXT = "❌Don't send me messages directly I'm only File Share bot!"
