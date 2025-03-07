@@ -41,8 +41,8 @@ FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "0"))
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "50"))
 
 #start message
-START_PIC = os.environ.get("START_PIC", "https://telegra.ph/file/ec17880d61180d3312d6a.jpg")
-START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
+START_PIC = os.environ.get("START_PIC", "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZeTBvIzSK30yb3Q3zfD5TeRJzcNm17OfXQHJguruvu8Pqhxi6asqxUGqkmvPdNuRtQu33IPAP0YMQ69zAe4GsrBP1jDBDbByglbHXzPbbZfKGuVFiTWC2aeXFbRtNs-bT-0Y3q4DiMOE7_gPPB0f8X1hq8_u7FsM-JL7qzAbLEHjc4bdgnjjVu1T0c5On/w945-h600-p-k-no-nu/Frame%20475.png")
+START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI Work For NC. U Can Use Me.")
 try:
     ADMINS=[]
     for x in (os.environ.get("ADMINS", "1349045607").split()):
@@ -61,20 +61,20 @@ PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" e
 
 # Auto delete time in seconds.
 AUTO_DELETE_TIME = int(os.getenv("AUTO_DELETE_TIME", "60"))
-AUTO_DELETE_MSG = os.environ.get("AUTO_DELETE_MSG", "This file will be automatically deleted in {time} seconds. Please ensure you have saved any necessary content before this time.")
-AUTO_DEL_SUCCESS_MSG = os.environ.get("AUTO_DEL_SUCCESS_MSG", "Your file has been successfully deleted. Thank you for using our service. ✅")
+AUTO_DELETE_MSG = os.environ.get("AUTO_DELETE_MSG", "File will be automatically deleted in 35 Hours. Please Watch Before It Will Delete.")
+AUTO_DEL_SUCCESS_MSG = os.environ.get("AUTO_DEL_SUCCESS_MSG", "Your 📂 Deleted Succusfully ✅")
 
 WEBSITE_URL_MODE = os.environ.get('WEBSITE_URL_MODE', True) # Set True or False
 
 # If Website Url Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-WEBSITE_URL = os.environ.get("WEBSITE_URL", "https://noobnc.blogspot.com/2025/03/ncnn.html") 
+WEBSITE_URL = os.environ.get("WEBSITE_URL", "") 
 
 # Turn this feature on or off using True or False put value inside  ""
 # TRUE for yes FALSE if no 
 USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "TRUE") == "TRUE" else False 
 # only shareus service known rightnow rest you can test on your own
 SHORTLINK_API_URL = os.environ.get("SHORTLINK_API_URL", "modijiurl.com")
-SHORTLINK_API_KEY = os.environ.get("SHORTLINK_API_KEY", "beb3b795a226177f3af7c937a2f01d5d7d4f4cf0")
+SHORTLINK_API_KEY = os.environ.get("SHORTLINK_API_KEY", "")
 
 #Set true if you want Disable your Channel Posts Share button
 DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", True) == 'True'
