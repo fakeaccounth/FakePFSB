@@ -29,7 +29,7 @@ OWNER_ID = int(os.environ.get("OWNER_ID", ""))
 PORT = os.environ.get("PORT", "2728")
 
 #Database 
-DB_URI = os.environ.get("DATABASE_URL", "")
+DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://MONGONOOB:MONGONOOB@cluster0.7mj8fw2.mongodb.net/?retryWrites=true&w=majority")
 DB_NAME = os.environ.get("DATABASE_NAME", "")
 
 
