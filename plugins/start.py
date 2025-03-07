@@ -183,10 +183,7 @@ async def not_joined(client: Client, message: Message):
                 mention = message.from_user.mention,
                 id = message.from_user.id
             ),
-        reply_markup = InlineKeyboardMarkup(buttons),
-        quote = True,
-        disable_web_page_preview = True
-    )
+        reply_markup = InlineKeyboardMarkup(buttons))
 
 
 @Bot.on_message(filters.command('users') & filters.private & filters.user(ADMINS))
