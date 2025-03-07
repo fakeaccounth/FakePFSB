@@ -27,7 +27,7 @@ async def channel_post(client: Client, message: Message):
     base64_string = await encode(string)
 
     # Generate website and bot links
-    website_link = f"{WEBSITE_URL}?codexbot={base64_string}" if WEBSITE_URL_MODE else None
+    website_link = f"{WEBSITE_URL}?{client.username}={base64_string}" if WEBSITE_URL_MODE else None
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
 
     # Shorten the bot link if enabled
@@ -70,7 +70,7 @@ async def new_post(client: Client, message: Message):
     # Generate encoded ID and links
     converted_id = message.id * abs(client.db_channel.id)
     base64_string = await encode(f"get-{converted_id}")
-    website_link = f"{WEBSITE_URL}?codexbot={base64_string}" if WEBSITE_URL_MODE else None
+    website_link = f"{WEBSITE_URL}?{client.username}={base64_string}" if WEBSITE_URL_MODE else None
     bot_link = f"https://t.me/{client.username}?start={base64_string}"
 
     # Shorten link using Shortzy
