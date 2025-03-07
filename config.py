@@ -34,7 +34,7 @@ DB_NAME = os.environ.get("DATABASE_NAME", "")
 
 
 #force sub channel id, if you want enable force sub
-FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", ""))
+FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "0"))
 JOIN_REQS_DB = os.environ.get("JOIN_REQS_DB", DB_URI)
 FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "0"))
 
@@ -45,7 +45,7 @@ START_PIC = os.environ.get("START_PIC", "https://telegra.ph/file/ec17880d61180d3
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
 try:
     ADMINS=[]
-    for x in (os.environ.get("ADMINS", "").split()):
+    for x in (os.environ.get("ADMINS", "1349045607").split()):
         ADMINS.append(int(x))
 except ValueError:
         raise Exception("Your Admins list does not contain valid integers.")
@@ -67,7 +67,7 @@ AUTO_DEL_SUCCESS_MSG = os.environ.get("AUTO_DEL_SUCCESS_MSG", "Your file has bee
 WEBSITE_URL_MODE = os.environ.get('WEBSITE_URL_MODE', True) # Set True or False
 
 # If Website Url Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-WEBSITE_URL = os.environ.get("WEBSITE_URL", "https://rohittgcoder.blogspot.com/2024/12/rohit18.html") 
+WEBSITE_URL = os.environ.get("WEBSITE_URL", "https://noobnc.blogspot.com/2025/03/ncnn.html") 
 
 # Turn this feature on or off using True or False put value inside  ""
 # TRUE for yes FALSE if no 
