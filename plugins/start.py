@@ -9,11 +9,11 @@ from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 
 from bot import Bot
 from config import *
-from helper_func import subscribed,decode, get_messages, delete_file
-from database.database import add_user, del_user, full_userbase, present_user
+from helper_func import *
+from database.database import *
 
 
-@Bot.on_message(filters.command('start') & filters.private & subscribed)
+@Bot.on_message(filters.command('start') & filters.private & subscribed & subscribed2)
 async def start_command(client: Client, message: Message):
     id = message.from_user.id
     new_user = False
