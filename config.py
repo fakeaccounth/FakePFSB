@@ -9,34 +9,34 @@ from logging.handlers import RotatingFileHandler
 load_dotenv()
 
 #Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7790719873:AAHBuOlHJy2HjYBzsuY45HfJ5wC2PyI30ZE")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
 
 #Your API ID from my.telegram.org
-APP_ID = int(os.environ.get("APP_ID", "29203773"))
+APP_ID = int(os.environ.get("APP_ID", ""))
 
 #Your API Hash from my.telegram.org
-API_HASH = os.environ.get("API_HASH", "955f05c16722e99e157125fc025bac41")
+API_HASH = os.environ.get("API_HASH", "")
 
 #Your db channel Id
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002035248935"))
+CHANNEL_ID = int(os.environ.get("CHANNEL_ID", ""))
 
-LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002433740523"))
+LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", ""))
 
 #OWNER ID
-OWNER_ID = int(os.environ.get("OWNER_ID", "1349045607"))
+OWNER_ID = int(os.environ.get("OWNER_ID", ""))
 
 #Port
 PORT = os.environ.get("PORT", "2728")
 
 #Database 
-DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://MONGONOOB:MONGONOOB@cluster0.7mj8fw2.mongodb.net/?retryWrites=true&w=majority")
+DB_URI = os.environ.get("DATABASE_URL", "")
 DB_NAME = os.environ.get("DATABASE_NAME", "MONGONOOB")
 
 
 #force sub channel id, if you want enable force sub
 FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1002350773304"))
 JOIN_REQS_DB = os.environ.get("JOIN_REQS_DB", DB_URI)
-FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "-1002170811388"))
+FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "0"))
 
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "50"))
 
@@ -77,7 +77,7 @@ SHORTLINK_API_URL = os.environ.get("SHORTLINK_API_URL", "modijiurl.com")
 SHORTLINK_API_KEY = os.environ.get("SHORTLINK_API_KEY", "beb3b795a226177f3af7c937a2f01d5d7d4f4cf0")
 
 #Set true if you want Disable your Channel Posts Share button
-DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True'
+DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", True) == 'True'
 
 BOT_STATS_TEXT = "<b>BOT UPTIME</b>\n{uptime}"
 USER_REPLY_TEXT = "❌Don't send me messages directly I'm only File Share bot!"
