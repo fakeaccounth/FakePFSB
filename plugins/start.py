@@ -142,12 +142,26 @@ REPLY_ERROR = """<code>Use this command as a replay to any telegram message with
 
 @Bot.on_message(filters.command('start') & filters.private)
 async def not_joined(client: Client, message: Message):
-    buttons = [
-        [
-            InlineKeyboardButton(text="Join Channel", url=client.invitelink),
-            InlineKeyboardButton(text="Join Channel", url=client.invitelink2),
-        ]
-    ]
+    # Initialize buttons list
+    buttons = []
+
+    # Check if the first and second channels are both set
+    if FORCE_SUB_CHANNEL and FORCE_SUB_CHANNEL2:
+        buttons.append([
+            InlineKeyboardButton(text="• ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ", url=client.invitelink),
+            InlineKeyboardButton(text="ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ •", url=client.invitelink2),
+        ])
+    # Check if only the first channel is set
+    elif FORCE_SUB_CHANNEL:
+        buttons.append([
+            InlineKeyboardButton(text="• ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ•", url=client.invitelink)
+        ])
+    # Check if only the second channel is set
+    elif FORCE_SUB_CHANNEL2:
+        buttons.append([
+            InlineKeyboardButton(text="• ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ•", url=client.invitelink2)
+        ])
+
     try:
         buttons.append(
             [
@@ -160,8 +174,9 @@ async def not_joined(client: Client, message: Message):
     except IndexError:
         pass
 
-    await message.reply(
-        text = FORCE_MSG.format(
+    await message.reply_photo(
+        photo = START_PIC,
+        caption = FORCE_MSG.format(
                 first = message.from_user.first_name,
                 last = message.from_user.last_name,
                 username = None if not message.from_user.username else '@' + message.from_user.username,
