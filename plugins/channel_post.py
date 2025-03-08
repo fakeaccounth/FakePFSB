@@ -49,8 +49,8 @@ async def channel_post(client: Client, message: Message):
     # Edit reply with all links
     message_text = "<b>Here are your links:</b>\n\n"
     if WEBSITE_URL_MODE:
-        message_text += f"<b>Website:</b> {website_link}\n"
-    message_text += f"<b>Bot (Original):</b> {bot_link}\n"
+        message_text += f"<b>Website:</b> {website_link}\n\n"
+    message_text += f"<b>Bot (Original):</b> {bot_link}\n\n"
     if USE_SHORTLINK:
         message_text += f"<b>Bot (Shortened):</b> {short_bot_link}"
 
