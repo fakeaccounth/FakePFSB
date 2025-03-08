@@ -42,7 +42,7 @@ TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "50"))
 
 #start message
 START_PIC = os.environ.get("START_PIC", "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZeTBvIzSK30yb3Q3zfD5TeRJzcNm17OfXQHJguruvu8Pqhxi6asqxUGqkmvPdNuRtQu33IPAP0YMQ69zAe4GsrBP1jDBDbByglbHXzPbbZfKGuVFiTWC2aeXFbRtNs-bT-0Y3q4DiMOE7_gPPB0f8X1hq8_u7FsM-JL7qzAbLEHjc4bdgnjjVu1T0c5On/w945-h600-p-k-no-nu/Frame%20475.png")
-START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI Work For NC. U Can Use Me.")
+START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\n<b>Radhe Radhe 🙏.</b>")
 try:
     ADMINS=[]
     for x in (os.environ.get("ADMINS", "1349045607").split()):
@@ -60,8 +60,8 @@ CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
 PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" else False
 
 # Auto delete time in seconds.
-AUTO_DELETE_TIME = int(os.getenv("AUTO_DELETE_TIME", "60"))
-AUTO_DELETE_MSG = os.environ.get("AUTO_DELETE_MSG", "<b>File will be automatically deleted in 35 Hours. Please Watch It, Before Deleted.</b>")
+AUTO_DELETE_TIME = int(os.getenv("AUTO_DELETE_TIME", "345600"))
+AUTO_DELETE_MSG = os.environ.get("AUTO_DELETE_MSG", "<b>File will be automatically deleted in 4 Days. Please Watch It, Before Deleted.</b>")
 AUTO_DEL_SUCCESS_MSG = os.environ.get("AUTO_DEL_SUCCESS_MSG", "<b>Your 📂 Deleted Successfully ✅</b>")
 
 
@@ -81,10 +81,9 @@ SHORTLINK_API_KEY = os.environ.get("SHORTLINK_API_KEY", "")
 DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", "True") == 'True'
 
 BOT_STATS_TEXT = "<b>BOT UPTIME</b>\n{uptime}"
-USER_REPLY_TEXT = "❌Don't send me messages directly I'm only File Share bot!"
+USER_REPLY_TEXT = "<b>❌ Don't Send Me Messages 👉 @Noob_Studio_Chat</b>"
 
 ADMINS.append(OWNER_ID)
-ADMINS.append(1250450587)
 
 LOG_FILE_NAME = "filesharingbot.txt"
 
