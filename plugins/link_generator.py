@@ -70,9 +70,9 @@ async def batch(client: Client, message: Message):
 
     await second_message.reply_text(
         f"<b>Here is your link</b>\n\n"
-        f"<b>Shortened Bot Link:</b> {short_bot_link}\n"
-        f"<b>Bot Link:</b> {bot_link}\n"
-        f"<b>{f'Website Link:</b> {website_link}' if WEBSITE_URL_MODE else ''}",
+        f"Shortened Bot Link: {short_bot_link}\n"
+        f"Bot Link: {bot_link}\n"
+        f"{f'Website Link: {website_link}' if WEBSITE_URL_MODE else ''}",
         quote=True,
         reply_markup=reply_markup
     )
@@ -122,9 +122,9 @@ async def link_generator(client: Client, message: Message):
 
     await channel_message.reply_text(
         f"<b>Here is your link</b>\n\n"
-        f"<b>Shortened Bot Link:</b> {short_bot_link}\n"
-        f"<b>Bot Link:</b> {bot_link}\n"
-        f"<b>{f'Website Link:</b> {website_link}' if WEBSITE_URL_MODE else ''}",
+        f"Shortened Bot Link: {short_bot_link}\n"
+        f"Bot Link: {bot_link}\n"
+        f"{f'Website Link: {website_link}' if WEBSITE_URL_MODE else ''}",
         quote=True,
         reply_markup=reply_markup
     )
