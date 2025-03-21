@@ -60,8 +60,8 @@ CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
 PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" else False
 
 # Auto delete time in seconds.
-AUTO_DELETE_TIME = int(os.getenv("AUTO_DELETE_TIME", "345600"))
-AUTO_DELETE_MSG = os.environ.get("AUTO_DELETE_MSG", "<b>File will be automatically deleted in 4 Days. Please Watch It, Before Deleted.</b>")
+AUTO_DELETE_TIME = int(os.getenv("AUTO_DELETE_TIME", "604800"))
+AUTO_DELETE_MSG = os.environ.get("AUTO_DELETE_MSG", "<b>File will be automatically deleted in 7 Days. Please Watch It, Before Deleted.</b>")
 AUTO_DEL_SUCCESS_MSG = os.environ.get("AUTO_DEL_SUCCESS_MSG", "<b>Your 📂 Deleted Successfully ✅</b>")
 
 
@@ -72,9 +72,9 @@ WEBSITE_URL = os.environ.get("WEBSITE_URL", "")
 
 # Turn this feature on or off using True or False put value inside  ""
 # TRUE for yes FALSE if no 
-USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "TRUE") == "TRUE" else False 
+USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "False") == "TRUE" else False 
 # only shareus service known rightnow rest you can test on your own
-SHORTLINK_API_URL = os.environ.get("SHORTLINK_API_URL", "modijiurl.com")
+SHORTLINK_API_URL = os.environ.get("SHORTLINK_API_URL", "")
 SHORTLINK_API_KEY = os.environ.get("SHORTLINK_API_KEY", "")
 
 #Set true if you want Disable your Channel Posts Share button
