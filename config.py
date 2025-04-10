@@ -74,7 +74,7 @@ WEBSITE_URL = os.environ.get("WEBSITE_URL", "")
 # TRUE for yes FALSE if no 
 USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "TRUE") == "TRUE" else False 
 # only shareus service known rightnow rest you can test on your own
-SHORTLINK_API_URL = os.environ.get("SHORTLINK_API_URL", "")
+SHORTLINK_API_URL = os.environ.get("SHORTLINK_API_URL", "gplinks.com")
 SHORTLINK_API_KEY = os.environ.get("SHORTLINK_API_KEY", "")
 
 #Set true if you want Disable your Channel Posts Share button
