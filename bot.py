@@ -35,7 +35,7 @@ class Bot(Client):
         )
         self.LOGGER = LOGGER
 
-    async def start(self, *args, **kwargs):
+    async def start(self):
         await super().start()
         usr_bot_me = await self.get_me()
         self.uptime = datetime.now()
