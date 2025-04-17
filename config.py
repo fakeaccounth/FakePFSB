@@ -9,21 +9,21 @@ from logging.handlers import RotatingFileHandler
 load_dotenv()
 
 #Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", " 6403720726:AAH2s38VIkj9TWcxA2ZNlRmnz-G2CSot4MA")
 
 #Your API ID from my.telegram.org
-APP_ID = int(os.environ.get("APP_ID", ""))
+APP_ID = int(os.environ.get("APP_ID", "23229610"))
 
 #Your API Hash from my.telegram.org
-API_HASH = os.environ.get("API_HASH", "")
+API_HASH = os.environ.get("API_HASH", "8fc13674e50502c5a9e6b809cac40212")
 
 #Your db channel Id
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", ""))
+CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1001999588896"))
 
-LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", ""))
+LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002433740523"))
 
 #OWNER ID
-OWNER_ID = int(os.environ.get("OWNER_ID", ""))
+OWNER_ID = int(os.environ.get("OWNER_ID", "1349045607"))
 
 #Port
 PORT = os.environ.get("PORT", "2728")
@@ -34,7 +34,7 @@ DB_NAME = os.environ.get("DATABASE_NAME", "MONGONOOB")
 
 
 #force sub channel id, if you want enable force sub
-FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", ""))
+FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1001913326364"))
 JOIN_REQS_DB = os.environ.get("JOIN_REQS_DB", DB_URI)
 FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "0"))
 
@@ -65,7 +65,7 @@ AUTO_DELETE_MSG = os.environ.get("AUTO_DELETE_MSG", "<b>File will be automatical
 AUTO_DEL_SUCCESS_MSG = os.environ.get("AUTO_DEL_SUCCESS_MSG", "<b>Your 📂 Deleted Successfully ✅</b>")
 
 
-WEBSITE_URL_MODE = os.environ.get('WEBSITE_URL_MODE', True) # Set True or False
+WEBSITE_URL_MODE = os.environ.get('WEBSITE_URL_MODE', False) # Set True or False
 
 # If Website Url Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
 WEBSITE_URL = os.environ.get("WEBSITE_URL", "") 
