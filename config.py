@@ -38,7 +38,7 @@ FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", ""))
 JOIN_REQS_DB = os.environ.get("JOIN_REQS_DB", DB_URI)
 FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "0"))
 
-TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "50"))
+TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "80"))
 
 #start message
 START_PIC = os.environ.get("START_PIC", "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZeTBvIzSK30yb3Q3zfD5TeRJzcNm17OfXQHJguruvu8Pqhxi6asqxUGqkmvPdNuRtQu33IPAP0YMQ69zAe4GsrBP1jDBDbByglbHXzPbbZfKGuVFiTWC2aeXFbRtNs-bT-0Y3q4DiMOE7_gPPB0f8X1hq8_u7FsM-JL7qzAbLEHjc4bdgnjjVu1T0c5On/w945-h600-p-k-no-nu/Frame%20475.png")
