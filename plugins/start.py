@@ -121,10 +121,10 @@ async def start_command(client: Client, message: Message):
 
     if START_PIC:
         await message.reply_photo(photo=START_PIC, caption=start_message,
-                                  reply_markup=reply_markup, message_effect_id=5104841245755180586)
+                                  reply_markup=reply_markup)#, #message_effect_id=5104841245755180586)
     else:
-        await message.reply_text(text=start_message, reply_markup=reply_markup,
-                                 message_effect_id=5104841245755180586)
+        await message.reply_text(text=start_message, reply_markup=reply_markup)#,
+                                 #message_effect_id=5104841245755180586)
 
     try:
         await message.delete()
